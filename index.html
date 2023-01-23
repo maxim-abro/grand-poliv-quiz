@@ -6,6 +6,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="style.css">
+  <script src="vue.min.js"></script>
   <title>grand poliv</title>
 </head>
 <body>
@@ -31,26 +32,21 @@
 
     <div class="quiz-body">
       <div class="quiz-body-text">
-        На каком этапе благоустройство?
+        {{ getActiveStage.text }}
       </div>
 
       <div class="quiz-progress">
-        <div class="quiz-progress-active" style="width: 25%;">
-          <div class="quiz-progress-active-label">25%</div>
+        <div class="quiz-progress-active" :style="`width: ${getActiveStage.percents}%;`">
+          <div class="quiz-progress-active-label">{{ getActiveStage.percents }}%</div>
         </div>
       </div>
 
-      <div class="quiz-answers">
+      <div v-if="getActiveStage.type === 0" class="quiz-answers">
         <div class="quiz-answers-cards">
-          <div class="quiz-answers-card">
-            <img src="img/step1.png" alt="">
-            <div class="quiz-answers-card-text">Обжитой участок</div>
+          <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
+            <img :src="`img/${item.image}`" alt="">
+            <div class="quiz-answers-card-text">{{ item.title }}</div>
           </div>
-          <div class="quiz-answers-card">
-            <img src="img/step1.1.png" alt="">
-            <div class="quiz-answers-card-text">В процессе строительства</div>
-          </div>
-        </div>
 
         <div class="quiz-answers-hint">
           <div class="quiz-answers-hint-head">
@@ -66,15 +62,32 @@
           <div class="quiz-answers-hint-wrap">
             <img src="img/bubble.svg" alt="" class="quiz-answers-hint-svg">
             <div class="quiz-answers-hint-message">
-              Лучше позаботиться о системе заранее. На подготовительные работы потратиться минимум средств и времени, но
-              в итоге вы сэкономите на итоговой смете
+              {{ getActiveStage.description }}
             </div>
 
           </div>
         </div>
+        <div class="quiz-hint-mobile">
+          <div class="quiz-hint-mobile-avatar">
+            <img src="img/avatar.png" alt="">
+          </div>
+          <div class="quiz-hint-mobile-text">
+            <div class="quiz-hint-mobile-person">
+              Андрей <span>Монтажник, консультант</span>
+            </div>
+            <div class="quiz-hint-mobile-text">
+              {{ getActiveStage.description }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+      <div v-if="getActiveStage.type === 1" class="quiz-answers-one">
+
+      </div>
   </div>
 </div>
+
+<script src="quiz.js"></script>
 </body>
 </html>
