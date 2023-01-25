@@ -1,7 +1,9 @@
 const app = new Vue({
   el: "#quiz",
   data: {
-    stageNow: 0,
+    stageNow: 7,
+    plane: false,
+    finish: false,
     stages: [
       {
         text: "На каком этапе благоустройство?",
@@ -135,8 +137,8 @@ const app = new Vue({
         checkedValue: null,
       },
       {
-        text: "",
-        description: "",
+        text: "У вас есть план участка?",
+        description: "Точно ответить на вопрос стоимости системы можно только после предварительного проектирования, при наличии плана участка и необходимых вводных",
         percents: 57,
         type: 2,
         answers: [
@@ -162,11 +164,19 @@ const app = new Vue({
       this.stageNow++
       this.getActiveStage.chekedValue = stepValue
       console.log(this.getActiveStage)
+    },
+    toNextStepTwo(stepValue) {
+      if (stepValue === 0) {
+        this.plane = true
+      } else {
+        this.finish = true
+      }
     }
   },
   computed: {
     getActiveStage() {
       return this.stages[this.stageNow]
-    }
+    },
+
   }
 });

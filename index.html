@@ -32,7 +32,7 @@
 
     <div class="quiz-body">
       <div class="quiz-body-text">
-        {{ getActiveStage.text }}
+        {{ !plane ? getActiveStage.text : 'Загрузите план участка' }}
       </div>
 
       <div class="quiz-progress">
@@ -41,12 +41,53 @@
         </div>
       </div>
 
-      <div v-if="getActiveStage.type === 0" class="quiz-answers">
-        <div class="quiz-answers-cards">
+      <div v-if="getActiveStage.type === 0 && !plane" class="quiz-answers">
+        <div class="quiz-answers-cards" :style="`grid-template-columns: repeat(${getActiveStage.answers.length}, minmax(0, 1fr));`">
           <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
             <img :src="`img/${item.image}`" alt="">
             <div class="quiz-answers-card-text">{{ item.title }}</div>
           </div>
+      </div>
+      <div class="quiz-answers-hint">
+          <div class="quiz-answers-hint-head">
+            <div class="quiz-answers-hint-avatar">
+              <img src="img/avatar.png" alt="">
+            </div>
+
+            <div class="quiz-answers-hint-text">
+              <div class="quiz-answers-hint-text-name">Андрей</div>
+              <div class="quiz-answers-hint-text-position">Монтажник, консультант</div>
+            </div>
+          </div>
+          <div class="quiz-answers-hint-wrap">
+            <img src="img/bubble.svg" alt="" class="quiz-answers-hint-svg">
+            <div class="quiz-answers-hint-message">
+              {{ getActiveStage.description }}
+            </div>
+
+          </div>
+    </div>
+      <div class="quiz-hint-mobile">
+        <div class="quiz-hint-mobile-avatar">
+          <img src="img/avatar.png" alt="">
+        </div>
+        <div class="quiz-hint-mobile-text">
+          <div class="quiz-hint-mobile-person">
+            Андрей <span>Монтажник, консультант</span>
+          </div>
+          <div class="quiz-hint-mobile-text">
+            {{ getActiveStage.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+      <div v-if="getActiveStage.type === 1 && !plane" class="quiz-answers-one">
+        <div class="quiz-answers-cards" :style="`grid-template-columns: repeat(3, minmax(0, 1fr));`">
+          <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
+            <img :src="`img/${item.image}`" alt="">
+            <div class="quiz-answers-card-text">{{ item.title }}</div>
+          </div>
+        </div>
 
         <div class="quiz-answers-hint">
           <div class="quiz-answers-hint-head">
@@ -81,9 +122,60 @@
           </div>
         </div>
       </div>
-    </div>
-      <div v-if="getActiveStage.type === 1" class="quiz-answers-one">
+      <div v-if="getActiveStage.type === 2 && !plane" class="quiz-answers-two">
+        <div class="quiz-answers-cards" :style="`grid-template-columns: repeat(2, minmax(0, 1fr));`">
+          <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStepTwo(_idx)" class="quiz-answers-card">
+            <img :src="`img/${item.image}`" alt="">
+            <div class="quiz-answers-card-text">{{ item.title }}</div>
+          </div>
+        </div>
 
+        <div class="quiz-answers-hint">
+          <div class="quiz-answers-hint-head">
+            <div class="quiz-answers-hint-avatar">
+              <img src="img/avatar.png" alt="">
+            </div>
+
+            <div class="quiz-answers-hint-text">
+              <div class="quiz-answers-hint-text-name">Андрей</div>
+              <div class="quiz-answers-hint-text-position">Монтажник, консультант</div>
+            </div>
+          </div>
+          <div class="quiz-answers-hint-wrap">
+            <img src="img/bubble.svg" alt="" class="quiz-answers-hint-svg">
+            <div class="quiz-answers-hint-message">
+              {{ getActiveStage.description }}
+            </div>
+
+          </div>
+        </div>
+        <div class="quiz-hint-mobile">
+          <div class="quiz-hint-mobile-avatar">
+            <img src="img/avatar.png" alt="">
+          </div>
+          <div class="quiz-hint-mobile-text">
+            <div class="quiz-hint-mobile-person">
+              Андрей <span>Монтажник, консультант</span>
+            </div>
+            <div class="quiz-hint-mobile-text">
+              {{ getActiveStage.description }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="plane" class="quiz-plane">
+        <div class="quiz-file-label">
+          <div class="quiz-file-label-content">
+            <img src="img/upload.svg" alt="">
+            <div class="quiz-file-label-text">
+              Нажмите, чтобы загрузить файлы
+              или перетяните их из папки в это поле
+            </div>
+            <div class="quiz-file-label-subtext">
+              до 10 файлов не более 25 МБ
+            </div>
+          </div>
+        </div>
       </div>
   </div>
 </div>
