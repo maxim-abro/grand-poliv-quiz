@@ -35,13 +35,19 @@
         {{ !plane ? getActiveStage.text : 'Загрузите план участка' }}
       </div>
 
-      <div class="quiz-progress">
-        <div class="quiz-progress-active" :style="`width: ${getActiveStage.percents}%;`">
-          <div class="quiz-progress-active-label">{{ getActiveStage.percents }}%</div>
+<!--      <div class="quiz-progress">-->
+<!--        <div class="quiz-progress-active" :style="`width: ${getActiveStage.percents}%;`">-->
+<!--          <div class="quiz-progress-active-label">{{ getActiveStage.percents }}%</div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      todo bar -->
+      <div class='quiz-progress'>
+        <div class='quiz-progress-bar'>
         </div>
       </div>
 
-      <div v-if="getActiveStage.type === 0 && !plane" class="quiz-answers">
+      <transition name="fade">
+      <div v-if="getActiveStage.type === 0 && !plane && !finish" class="quiz-answers">
         <div class="quiz-answers-cards" :style="`grid-template-columns: repeat(${getActiveStage.answers.length}, minmax(0, 1fr));`">
           <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
             <img :src="`img/${item.image}`" alt="">
@@ -81,7 +87,10 @@
         </div>
       </div>
     </div>
-      <div v-if="getActiveStage.type === 1 && !plane" class="quiz-answers-one">
+      </transition>
+
+      <transition name="fade">
+      <div v-if="getActiveStage.type === 1 && !plane && !finish" class="quiz-answers-one">
         <div class="quiz-answers-cards" :style="`grid-template-columns: repeat(3, minmax(0, 1fr));`">
           <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
             <img :src="`img/${item.image}`" alt="">
@@ -122,9 +131,12 @@
           </div>
         </div>
       </div>
-      <div v-if="getActiveStage.type === 2 && !plane" class="quiz-answers-two">
+      </transition>
+
+        <transition name="fade">
+      <div v-if="getActiveStage.type === 2 && !plane && !finish" class="quiz-answers-two">
         <div class="quiz-answers-cards" :style="`grid-template-columns: repeat(2, minmax(0, 1fr));`">
-          <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStepTwo(_idx)" class="quiz-answers-card">
+          <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
             <img :src="`img/${item.image}`" alt="">
             <div class="quiz-answers-card-text">{{ item.title }}</div>
           </div>
@@ -163,6 +175,8 @@
           </div>
         </div>
       </div>
+        </transition>
+      <transition name="fade">
       <div v-if="plane" class="quiz-plane">
         <div class="quiz-file-label">
           <div class="quiz-file-label-content">
@@ -176,6 +190,93 @@
             </div>
           </div>
         </div>
+        <div class="quiz-answers-hint">
+          <div class="quiz-answers-hint-head">
+            <div class="quiz-answers-hint-avatar">
+              <img src="img/avatar.png" alt="">
+            </div>
+
+            <div class="quiz-answers-hint-text">
+              <div class="quiz-answers-hint-text-name">Андрей</div>
+              <div class="quiz-answers-hint-text-position">Монтажник, консультант</div>
+            </div>
+          </div>
+          <div class="quiz-answers-hint-wrap">
+            <img src="img/bubble.svg" alt="" class="quiz-answers-hint-svg">
+            <div class="quiz-answers-hint-message">
+              Загрузите фото, рисунок, скан-копию или документ с планом участка. Это позволит произвести предварительное
+              проектирование и составить смету с точностью до 100%
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </transition>
+      <transition name="fade">
+      <div v-if="finish" class="quiz-final">
+        <form action="" class="quiz-final-form">
+          <div class="form-row">
+            <div class="form-col">
+              <label for="name-quiz" class="placeholder unfocus">Имя</label>
+              <img src="img/user-input.svg" alt="">
+              <input @focus="focusInput" @blur="blurInput" type="text" name="name" id="name-quiz" class="input-quiz">
+            </div>
+            <div class="form-col">
+              <label for="tel-quiz" class="placeholder unfocus">Введите номер телефона</label>
+              <img src="img/call-input.svg" alt="">
+              <input @focus="focusInput" @blur="blurInput" type="tel" name="tel" id="tel-quiz" class="input-quiz">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-col">
+              <label for="email-quiz" class="placeholder unfocus">E-Mail адрес</label>
+              <img src="img/email-input.svg" alt="">
+              <input @focus="focusInput" @blur="blurInput" type="email" name="email" id="email-quiz" class="input-quiz">
+            </div>
+            <div class="form-col">
+              <label for="mkad-quiz" class="placeholder unfocus">Удаленность участка от МКАД</label>
+              <img src="img/home-input.svg" alt="">
+              <input @focus="focusInput" @blur="blurInput" type="number" name="mkad" id="mkad-quiz" class="input-quiz">
+            </div>
+          </div>
+          <button type="submit" class="form-button">
+            <span class="content">
+              <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.53033 4.46967C1.23744 4.17678 0.762563 4.17678 0.46967 4.46967C0.176777 4.76256 0.176777 5.23744 0.46967 5.53033L1.53033 4.46967ZM5 9L4.46967 9.53033C4.76256 9.82322 5.23744 9.82322 5.53033 9.53033L5 9ZM13.5303 1.53033C13.8232 1.23744 13.8232 0.762563 13.5303 0.46967C13.2374 0.176777 12.7626 0.176777 12.4697 0.46967L13.5303 1.53033ZM5.53033 4.46967C5.23744 4.17678 4.76256 4.17678 4.46967 4.46967C4.17678 4.76256 4.17678 5.23744 4.46967 5.53033L5.53033 4.46967ZM9 9L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033L9 9ZM17.5303 1.53033C17.8232 1.23744 17.8232 0.762563 17.5303 0.46967C17.2374 0.176777 16.7626 0.176777 16.4697 0.46967L17.5303 1.53033ZM0.46967 5.53033L4.46967 9.53033L5.53033 8.46967L1.53033 4.46967L0.46967 5.53033ZM5.53033 9.53033L13.5303 1.53033L12.4697 0.46967L4.46967 8.46967L5.53033 9.53033ZM4.46967 5.53033L8.46967 9.53033L9.53033 8.46967L5.53033 4.46967L4.46967 5.53033ZM9.53033 9.53033L17.5303 1.53033L16.4697 0.46967L8.46967 8.46967L9.53033 9.53033Z" fill="white"/>
+              </svg>
+              Получить расчет
+            </span>
+          </button>
+        </form>
+        <div class="quiz-answers-hint">
+          <div class="quiz-answers-hint-head">
+            <div class="quiz-answers-hint-avatar">
+              <img src="img/avatar.png" alt="">
+            </div>
+
+            <div class="quiz-answers-hint-text">
+              <div class="quiz-answers-hint-text-name">Андрей</div>
+              <div class="quiz-answers-hint-text-position">Монтажник, консультант</div>
+            </div>
+          </div>
+          <div class="quiz-answers-hint-wrap">
+            <img src="img/bubble.svg" alt="" class="quiz-answers-hint-svg">
+            <div class="quiz-answers-hint-message">
+              Пришлю на указанные контактные данные расчет стоимости с учетом бесплатного датчика дождя
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </transition>
+
+      <div class="quiz-footer">
+        <button class="quiz-footer-back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.66088 8.53078C9.95402 8.23813 9.95442 7.76326 9.66178 7.47012C9.36913 7.17698 8.89426 7.17658 8.60112 7.46922L9.66088 8.53078ZM4.47012 11.5932C4.17698 11.8859 4.17658 12.3607 4.46922 12.6539C4.76187 12.947 5.23674 12.9474 5.52988 12.6548L4.47012 11.5932ZM5.51318 11.5771C5.21111 11.2936 4.73648 11.3088 4.45306 11.6108C4.16964 11.9129 4.18475 12.3875 4.48682 12.6709L5.51318 11.5771ZM8.61782 16.5469C8.91989 16.8304 9.39452 16.8152 9.67794 16.5132C9.96136 16.2111 9.94625 15.7365 9.64418 15.4531L8.61782 16.5469ZM5 11.374C4.58579 11.374 4.25 11.7098 4.25 12.124C4.25 12.5382 4.58579 12.874 5 12.874V11.374ZM15.37 12.124V12.874L15.3723 12.874L15.37 12.124ZM17.9326 13.1766L18.4614 12.6447V12.6447L17.9326 13.1766ZM18.25 15.7351C18.2511 16.1493 18.5879 16.4841 19.0021 16.483C19.4163 16.4819 19.7511 16.1451 19.75 15.7309L18.25 15.7351ZM8.60112 7.46922L4.47012 11.5932L5.52988 12.6548L9.66088 8.53078L8.60112 7.46922ZM4.48682 12.6709L8.61782 16.5469L9.64418 15.4531L5.51318 11.5771L4.48682 12.6709ZM5 12.874H15.37V11.374H5V12.874ZM15.3723 12.874C16.1333 12.8717 16.8641 13.1718 17.4038 13.7084L18.4614 12.6447C17.6395 11.8276 16.5267 11.3705 15.3677 11.374L15.3723 12.874ZM17.4038 13.7084C17.9435 14.245 18.2479 14.974 18.25 15.7351L19.75 15.7309C19.7468 14.572 19.2833 13.4618 18.4614 12.6447L17.4038 13.7084Z" fill="#999999"/>
+          </svg>
+          Назад
+        </button>
       </div>
   </div>
 </div>

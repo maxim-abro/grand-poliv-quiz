@@ -1,7 +1,7 @@
 const app = new Vue({
   el: "#quiz",
   data: {
-    stageNow: 7,
+    stageNow: 0,
     plane: false,
     finish: false,
     stages: [
@@ -161,16 +161,36 @@ const app = new Vue({
   },
   methods: {
     toNextStep(stepValue) {
-      this.stageNow++
-      this.getActiveStage.chekedValue = stepValue
-      console.log(this.getActiveStage)
-    },
-    toNextStepTwo(stepValue) {
-      if (stepValue === 0) {
-        this.plane = true
+      this.getActiveStage.checkedValue = stepValue
+      if (this.stageNow === 1) {
+        this.stages[0].checkedValue === 0 ? this.stageNow++ : this.stageNow += 2;
+      } else if (this.stageNow === 2) {
+        this.stageNow += 2;
+      } else if (this.stageNow === 7) {
+        stepValue === 0 ? this.plane = true : this.finish = true;
       } else {
-        this.finish = true
+        this.stageNow++;
       }
+      console.log(this.stageNow)
+    },
+    toPrevStep() {
+      if (this.stageNow === 4) {
+        this.stages[0].checkedValue === 0 ? this.stageNow = 2 : this.stageNow = 3;
+      } else {
+        this.stageNow--
+      }
+    },
+    focusInput(event) {
+      const ph = event.target.parentNode.children[0]
+      event.target.parentNode.style.borderColor = '#999'
+      ph.classList.remove('unfocus')
+      ph.classList.add('focus')
+    },
+    blurInput(event) {
+      const ph = event.target.parentNode.children[0]
+      event.target.parentNode.style.borderColor = ''
+      ph.classList.add('unfocus')
+      ph.classList.remove('focus')
     }
   },
   computed: {
