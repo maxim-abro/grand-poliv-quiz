@@ -8,25 +8,25 @@
     font-family: "Gerbera";
     font-style: normal;
     font-weight: 300;
-    src: url("font/Gerbera-light.woff2");
+    src: url("font/Gerbera-Light.woff2");
 }
 @font-face {
     font-family: "Gerbera";
     font-style: normal;
     font-weight: 500;
-    src: url("font/Gerbera-medium.woff2");
+    src: url("font/Gerbera-Medium.woff2");
 }
 @font-face {
     font-family: "Gerbera";
     font-style: normal;
     font-weight: 700;
-    url("font/Gerbera-bold.woff2");
+    url("font/Gerbera-Bold.woff2");
 }
 @font-face {
     font-family: "Gerbera";
     font-style: normal;
     font-weight: 900;
-    src: url("font/Gerbera-black.woff2");
+    src: url("font/Gerbera-Black.woff2");
 }
 * {
     box-sizing: border-box;
