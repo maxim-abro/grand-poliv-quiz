@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2c7ac572-0550-472c-9be2-f981ff793b41" name="grand-poliv">
+        <fileTransfer accessType="SFTP" host="37.143.8.212" port="22" sshConfigId="8958927c-0132-4674-ba35-2efebf7107b5" sshConfig="root@37.143.8.212:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
