@@ -2,18 +2,14 @@
     box-sizing: border-box;
     margin: 0;
 }
-#quiz>* {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-}
 .container {
     width: 1512px;
     margin: 0 auto;
     border-radius: 16px;
     background: #f8f8f8;
-    padding: 60px 108px 0;
+    padding: 60px 108px;
 }
+
 /*top*/
 .quiz-top {
     display: flex;
@@ -57,47 +53,21 @@
 /*top-end*/
 
 /*body*/
+.quiz-body {
+    position: relative;
+}
 .quiz-body-text {
     font-size: 48px;
     font-weight: 500;
     color: #222222;
     margin-bottom: 25px;
 }
-/*.quiz-progress {*/
-/*    width: 100%;*/
-/*    height: 8px;*/
-/*    background: #ededed;*/
-/*    border-radius: 8px;*/
-/*    margin-bottom: 32px;*/
-/*}*/
-/*.quiz-progress-active {*/
-/*    background: #EE6D34;*/
-/*    height: 8px;*/
-/*    border-radius: 8px;*/
-/*    position: relative;*/
-/*    transition-property: width;*/
-/*    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
-/*    transition-duration: 150ms;*/
-/*}*/
-/*.quiz-progress-active::after {*/
-/*    display: block;*/
-/*    height: 100%;*/
-/*    border-radius: 20px;*/
-/*    background-image: -webkit-gradient(linear,left top,right top,from(#de4f12),to(#f28e63));*/
-/*    background-image: linear-gradient(90deg,#de4f12,#f28e63);*/
-/*    -webkit-box-shadow: inset 0 2px 9px hsla(0,0%,100%,.3),inset 0 -2px 6px rgba(0,0,0,.4),.6px 1.9px 7px 0 #ee6c3480;*/
-/*    box-shadow: inset 0 2px 9px hsla(0,0%,100%,.3),inset 0 -2px 6px rgba(0,0,0,.4),.6px 1.9px 7px 0 #ee6c3480;*/
-/*    position: relative;*/
-/*    overflow: hidden;*/
-/*    -webkit-transition: all .3s ease;*/
-/*    transition: all .3s ease;*/
-/*}*/
-/*.quiz-progress-active-label {*/
-/*    position: absolute;*/
-/*    bottom: 100%;*/
-/*    right: -10px;*/
-/*    color: #EE6D34;*/
-/*}*/
+.quiz-progress-active-label {
+    position: absolute;
+    bottom: 100%;
+    right: -10px;
+    color: #EE6D34;
+}
 .quiz-answers,
 .quiz-answers-one {
     display: flex;
@@ -110,7 +80,6 @@
 }
 .quiz-answers-cards>.quiz-answers-card {
     border-radius: 16px;
-    margin: 0 12px;
     background: #ffffff;
     box-shadow: 0 2px 4px #00000012;
     cursor: pointer;
@@ -143,6 +112,7 @@
 }
 .quiz-answers-card-text {
     padding: 32px;
+    line-height: 24px;
     color: #1589c9;
     text-decoration: underline dotted;
     text-underline-offset: 8px;
@@ -162,7 +132,8 @@
     margin-right: 15px;
     position: relative;
 }
-.quiz-answers-hint-avatar::after {
+.quiz-answers-hint-avatar::after,
+.quiz-hint-mobile-avatar::after {
     position: absolute;
     left: 70%;
     bottom: 5px;
@@ -191,18 +162,27 @@
     border-radius: 16px;
     border: 1px solid #d8d8d8;
     z-index: 2;
+    background: #f8f8f8;
 }
 .quiz-answers-hint-wrap {
     position: relative;
     z-index: 2;
 }
 .quiz-answers-hint-svg {
-    z-index: 1;
+    z-index: -10;
     position: absolute;
     top: -10px;
     left: 15px;
 }
-
+.quiz-answers-hint-wrap:after {
+    content: ' ';
+    position: absolute;
+    width: 22px;
+    height: 10px;
+    left: 16px;
+    top: 0;
+    background: #f8f8f8;
+}
 .quiz-plane {
     display: flex;
     justify-content: space-between;
@@ -315,6 +295,7 @@
     align-items: center;
     box-shadow: 0px 12px 16px 0px #A2CCE3;
     box-shadow: 0px 3px 0px 0px #0C689B;
+    cursor: pointer;
 }
 .form-button:focus {
     box-shadow: none;
@@ -324,6 +305,11 @@
 
 /*footer*/
 .quiz-footer {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    transform: translateY(150%);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -336,6 +322,27 @@
     text-underline-offset: 8px;
     background: none;
     border: none;
+    cursor: pointer;
+}
+.quiz-footer-skip {
+    display: flex;
+    align-items: center;
+    color: #1589C9;
+    text-decoration: underline dotted;
+    text-underline-offset: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.quiz-politic {
+    font-weight: 400;
+    font-size: 13px;
+    text-align: center;
+    color: #cecece;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%,250%);
 }
 /*footer-end*/
 
@@ -372,11 +379,27 @@
         border: 1px solid #d8d8d8;
         border-radius: 16px 16px 16px 0px;
     }
+    .quiz-hint-mobile-avatar {
+        margin: 0 15px 15px 8px;
+        position: relative;
+    }
+    .quiz-hint-mobile-person {
+        font-size: 16px;
+        color: #222222;
+        font-weight: 500;
+        margin: 16px 12px 6px 0;
+    }
+    .quiz-hint-mobile-person>span {
+        font-size: 13px;
+        font-weight: 400;
+        color: #727272;
+
+    }
 }
 
 /*animation*/
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active {
     transition: opacity 1s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
@@ -386,27 +409,43 @@
 
 
 :root {
-    --colour1: #f1c40f;
-    --colour2: #2c3e50;
+    --colour1: rgba(255,255,255,.15);
+    --colour2: #EE6D34;
     --speed: 4s;
 }
-
 @keyframes slide {
     from {
         background-position-x: 0;
     }
     to {
-        background-position-x: 113px;
+        background-position-x: -113px;
     }
 }
-
 .quiz-progress {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 8px;
+    background: #ededed;
+    border-radius: 8px;
+    margin-bottom: 32px;
 }
-
 .quiz-progress-bar {
-
+    position: relative;
+    transition-property: width;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    min-height: 8px;
+    min-width: 10px;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0px 10px 13px -6px rgba(44, 62, 80, 1);
+    background-color: var(--colour2);
+    background-image: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            var(--colour1) 10px,
+            var(--colour1) 20px
+    );
+    animation: slide var(--speed) linear infinite;
+    will-change: background-position;
 }

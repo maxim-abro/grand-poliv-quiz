@@ -168,17 +168,29 @@ const app = new Vue({
         this.stageNow += 2;
       } else if (this.stageNow === 7) {
         stepValue === 0 ? this.plane = true : this.finish = true;
+
       } else {
         this.stageNow++;
       }
-      console.log(this.stageNow)
     },
     toPrevStep() {
       if (this.stageNow === 4) {
         this.stages[0].checkedValue === 0 ? this.stageNow = 2 : this.stageNow = 3;
-      } else {
+      } else if (this.stageNow !== 4 && !this.plane && !this.finish) {
         this.stageNow--
+      } else if (this.plane) {
+        this.plane = false
+      } else if (this.finish) {
+        this.finish = false
+        this.stages[7].checkedValue === 0 ? this.plane = true : ''
       }
+    },
+    skipStep() {
+      this.stageNow === 4 ? this.stageNow++ : this.stageNow
+    },
+    skipPlane() {
+      this.plane = false;
+      this.finish = true;
     },
     focusInput(event) {
       const ph = event.target.parentNode.children[0]
@@ -187,16 +199,31 @@ const app = new Vue({
       ph.classList.add('focus')
     },
     blurInput(event) {
-      const ph = event.target.parentNode.children[0]
-      event.target.parentNode.style.borderColor = ''
-      ph.classList.add('unfocus')
-      ph.classList.remove('focus')
-    }
+      if (!event.target.value) {
+        const ph = event.target.parentNode.children[0]
+        event.target.parentNode.style.borderColor = ''
+        ph.classList.add('unfocus')
+        ph.classList.remove('focus')
+      }
+    },
   },
   computed: {
     getActiveStage() {
       return this.stages[this.stageNow]
     },
-
+    backIsVisible() {
+      return (this.stageNow === 2 || this.stageNow === 4 ||
+        this.stageNow === 5 || this.stageNow === 6 ||
+        this.stageNow === 7) && !this.finish
+    },
+    calculatePercents() {
+      if (!this.plane && !this.finish) {
+        return this.getActiveStage.percents
+      } else if (this.plane) {
+        return 81
+      } else {
+        return 95
+      }
+    }
   }
 });
