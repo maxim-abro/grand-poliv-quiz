@@ -1,6 +1,37 @@
+@font-face {
+    font-family: "Gerbera";
+    font-style: normal;
+    font-weight: 400;
+    src: url("font/Gerbera.woff2");
+}
+@font-face {
+    font-family: "Gerbera";
+    font-style: normal;
+    font-weight: 300;
+    src: url("font/Gerbera-light.woff2");
+}
+@font-face {
+    font-family: "Gerbera";
+    font-style: normal;
+    font-weight: 500;
+    src: url("font/Gerbera-medium.woff2");
+}
+@font-face {
+    font-family: "Gerbera";
+    font-style: normal;
+    font-weight: 700;
+    url("font/Gerbera-bold.woff2");
+}
+@font-face {
+    font-family: "Gerbera";
+    font-style: normal;
+    font-weight: 900;
+    src: url("font/Gerbera-black.woff2");
+}
 * {
     box-sizing: border-box;
     margin: 0;
+    font-family: Gerbera, normal;
 }
 .container {
     width: 1512px;
