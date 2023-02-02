@@ -3,7 +3,7 @@ const app = new Vue({
   data: {
     stageNow: 0,
     plane: false,
-    finish: true,
+    finish: false,
     stages: [
       {
         text: "На каком этапе благоустройство?",
