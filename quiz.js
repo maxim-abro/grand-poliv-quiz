@@ -3,7 +3,7 @@ const app = new Vue({
   data: {
     stageNow: 0,
     plane: false,
-    finish: false,
+    finish: true,
     stages: [
       {
         text: "На каком этапе благоустройство?",
@@ -158,6 +158,32 @@ const app = new Vue({
         checkedValue: null,
       },
     ],
+    form: {
+      name: {
+        status: 'error',
+        value: ""
+      },
+      email: {
+        status: 'none',
+        value: ""
+      },
+      phone: {
+        status: 'none',
+        value: ""
+      },
+      mkad: {
+        status: 'none',
+        value: ""
+      },
+      square: {
+        status: 'none',
+        value: ""
+      },
+      highway: {
+        status: 'none',
+        value: ""
+      },
+    }
   },
   methods: {
     toNextStep(stepValue) {
@@ -192,19 +218,24 @@ const app = new Vue({
       this.plane = false;
       this.finish = true;
     },
+    validateInput(event, min, max, rule, value) {
+      if (value.value.length > max) {
+        value.value = value.value.substring(0, max)
+        console.log(value.value)
+      }
+      if (!value.value.length) {
+        value.status = "error"
+      } else {
+        value.status = "success"
+      }
+    },
     focusInput(event) {
-      const ph = event.target.parentNode.children[0]
-      event.target.parentNode.style.borderColor = '#999'
-      ph.classList.remove('unfocus')
+      const ph = event.target.parentNode.parentNode
       ph.classList.add('focus')
     },
     blurInput(event) {
-      if (!event.target.value) {
-        const ph = event.target.parentNode.children[0]
-        event.target.parentNode.style.borderColor = ''
-        ph.classList.add('unfocus')
-        ph.classList.remove('focus')
-      }
+      const ph = event.target.parentNode.parentNode
+      ph.classList.remove('focus')
     },
   },
   computed: {

@@ -104,6 +104,13 @@
         <div class="quiz-answers-hint">
           <div class="quiz-answers-hint-head">
             <div class="quiz-answers-hint-avatar">
+              <div class="quiz-circle">
+                <div class="circle" style="margin: 0;">
+                  <div class="inner-ring"></div>
+                  <div class="inner-circle"></div>
+                  <div class="inner-gradient"></div>
+                </div>
+              </div>
               <img src="img/avatar.png" alt="">
             </div>
 
@@ -148,6 +155,13 @@
           <div class="quiz-answers-hint">
             <div class="quiz-answers-hint-head">
               <div class="quiz-answers-hint-avatar">
+                <div class="quiz-circle">
+                  <div class="circle" style="margin: 0;">
+                    <div class="inner-ring"></div>
+                    <div class="inner-circle"></div>
+                    <div class="inner-gradient"></div>
+                  </div>
+                </div>
                 <img src="img/avatar.png" alt="">
               </div>
 
@@ -166,6 +180,13 @@
           </div>
           <div class="quiz-hint-mobile">
             <div class="quiz-hint-mobile-avatar">
+              <div class="quiz-circle">
+                <div class="circle" style="margin: 0;">
+                  <div class="inner-ring"></div>
+                  <div class="inner-circle"></div>
+                  <div class="inner-gradient"></div>
+                </div>
+              </div>
               <img src="img/avatar.png" alt="">
             </div>
             <div class="quiz-hint-mobile-text">
@@ -197,6 +218,13 @@
         <div class="quiz-answers-hint">
           <div class="quiz-answers-hint-head">
             <div class="quiz-answers-hint-avatar">
+              <div class="quiz-circle">
+                <div class="circle" style="margin: 0;">
+                  <div class="inner-ring"></div>
+                  <div class="inner-circle"></div>
+                  <div class="inner-gradient"></div>
+                </div>
+              </div>
               <img src="img/avatar.png" alt="">
             </div>
 
@@ -221,15 +249,30 @@
         <div v-if="finish" class="quiz-final">
           <form action="" class="quiz-final-form">
             <div class="form-row">
-              <div v-if="stages[7].checkedValue === 0 || stages[7].checkedValue === 2" class="form-col">
-                <label for="name-quiz" class="placeholder unfocus">Имя</label>
-                <img src="img/user-input.svg" alt="">
-                <input @focus="focusInput" @blur="blurInput" type="text" name="name" id="name-quiz" class="input-quiz">
-              </div>
-              <div v-else class="form-col">
-                <label for="square-quiz" class="placeholder unfocus">Количество соток полива</label>
-                <img src="img/calc-input.svg" alt="">
-                <input @focus="focusInput" @blur="blurInput" type="number" name="name" id="square-quiz" class="input-quiz">
+<!--              <div v-if="stages[7].checkedValue === 0 || stages[7].checkedValue === 2" class="form-col">-->
+<!--                <label for="name-quiz" class="placeholder unfocus">Имя</label>-->
+<!--                <img src="img/user-input.svg" alt="">-->
+<!--                <input @focus="focusInput" @blur="blurInput" type="text" name="name" id="name-quiz" class="input-quiz">-->
+<!--              </div>-->
+<!--              <div v-else class="form-col">-->
+<!--                <label for="square-quiz" class="placeholder unfocus">Количество соток полива</label>-->
+<!--                <img src="img/calc-input.svg" alt="">-->
+<!--                <input @focus="focusInput" @blur="blurInput" type="number" name="name" id="square-quiz" class="input-quiz">-->
+<!--              </div>-->
+
+              <div class="form__wrap form-row">
+                <label class="form__label">
+                  <span class="form__icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							    	  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.86343 6.36195C6.74343 5.43495 7.05443 5.17495 7.42943 5.05395C7.68895 4.98595 7.96112 4.98217 8.22243 5.04295C8.56643 5.14295 8.65743 5.21895 9.78543 6.34295C10.7764 7.32995 10.8754 7.43695 10.9704 7.62995C11.1521 7.96873 11.1805 8.36894 11.0484 8.72995C10.9484 9.00495 10.8064 9.18695 10.2054 9.78995L9.81343 10.183C9.71048 10.2876 9.68629 10.4464 9.75343 10.577C10.6244 12.0628 11.86 13.3019 13.3434 14.177C13.5142 14.2684 13.7245 14.2389 13.8634 14.104L14.2404 13.733C14.4734 13.4941 14.7202 13.2691 14.9794 13.059C15.3866 12.809 15.8939 12.7867 16.3214 13C16.5304 13.1 16.5994 13.162 17.6214 14.182C18.6754 15.233 18.7054 15.266 18.8214 15.507C19.0397 15.9059 19.0374 16.3891 18.8154 16.786C18.7024 17.01 18.6334 17.091 18.0404 17.697C17.6824 18.063 17.3454 18.397 17.2914 18.446C16.8022 18.851 16.1746 19.0497 15.5414 19C14.383 18.8944 13.2617 18.5363 12.2564 17.951C10.0296 16.7711 8.13383 15.0521 6.74243 12.951C6.43937 12.5112 6.16994 12.0492 5.93643 11.569C5.31001 10.4953 4.98653 9.27189 5.00043 8.02895C5.04825 7.37871 5.36008 6.77637 5.86343 6.36195Z" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+							      </svg>
+                  </span>
+                  <span class="form__label-box">
+                    <input v-model="form.square.value" @input="validateInput($event,2,4,'none',form.square)" @focus="focusInput" @blur="blurInput" type="number" placeholder="Количество соток полива" maxlength="4" class="form__field field phone-mask"/>
+                    <span class="form__error" :class="form.square.status === 'active' ? 'active' : ''">Заполните поле</span>
+                    <span class="form__circle" :class="form.square.status === 'error' ? 'error' : ''"></span>
+                  </span>
+                </label>
               </div>
 
               <div v-if="stages[7].checkedValue === 0 || stages[7].checkedValue === 2" class="form-col">
@@ -270,8 +313,8 @@
                 <input @focus="focusInput" @blur="blurInput" type="tel" name="tel" id="tel-quiz" class="input-quiz">
               </div>
             </div>
-            <button type="submit" class="form-button">
-              <span class="content">
+            <button class="form__btn btn btn--blue quiz-btn">
+              <span>
                 <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1.53033 4.46967C1.23744 4.17678 0.762563 4.17678 0.46967 4.46967C0.176777 4.76256 0.176777 5.23744 0.46967 5.53033L1.53033 4.46967ZM5 9L4.46967 9.53033C4.76256 9.82322 5.23744 9.82322 5.53033 9.53033L5 9ZM13.5303 1.53033C13.8232 1.23744 13.8232 0.762563 13.5303 0.46967C13.2374 0.176777 12.7626 0.176777 12.4697 0.46967L13.5303 1.53033ZM5.53033 4.46967C5.23744 4.17678 4.76256 4.17678 4.46967 4.46967C4.17678 4.76256 4.17678 5.23744 4.46967 5.53033L5.53033 4.46967ZM9 9L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033L9 9ZM17.5303 1.53033C17.8232 1.23744 17.8232 0.762563 17.5303 0.46967C17.2374 0.176777 16.7626 0.176777 16.4697 0.46967L17.5303 1.53033ZM0.46967 5.53033L4.46967 9.53033L5.53033 8.46967L1.53033 4.46967L0.46967 5.53033ZM5.53033 9.53033L13.5303 1.53033L12.4697 0.46967L4.46967 8.46967L5.53033 9.53033ZM4.46967 5.53033L8.46967 9.53033L9.53033 8.46967L5.53033 4.46967L4.46967 5.53033ZM9.53033 9.53033L17.5303 1.53033L16.4697 0.46967L8.46967 8.46967L9.53033 9.53033Z" fill="white"/>
                 </svg>
@@ -282,6 +325,13 @@
           <div class="quiz-answers-hint">
             <div class="quiz-answers-hint-head">
               <div class="quiz-answers-hint-avatar">
+                <div class="quiz-circle">
+                  <div class="circle" style="margin: 0;">
+                    <div class="inner-ring"></div>
+                    <div class="inner-circle"></div>
+                    <div class="inner-gradient"></div>
+                  </div>
+                </div>
                 <img src="img/avatar.png" alt="">
               </div>
 
