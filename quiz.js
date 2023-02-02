@@ -1,7 +1,7 @@
 const app = new Vue({
   el: "#quiz",
   data: {
-    stageNow: 0,
+    stageNow: 7,
     plane: false,
     finish: false,
     stages: [
