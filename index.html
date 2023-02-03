@@ -30,6 +30,9 @@
         </div>
       </div>
     </div>
+    <div class="quiz-top-mobile-subtitle">
+      И получите сертификат на бесплатный датчик дождя Rain-Click™
+    </div>
 
     <div class="quiz-body">
       <div class="quiz-body-text">
@@ -50,7 +53,7 @@
                 <span>{{ item.title }}</span>
               </div>
             </div>
-        </div>
+          </div>
           <div class="quiz-answers-hint">
             <div class="quiz-answers-hint-head">
               <div class="quiz-answers-hint-avatar">
@@ -77,18 +80,25 @@
             </div>
           </div>
           <div class="quiz-hint-mobile">
-          <div class="quiz-hint-mobile-avatar">
-            <img src="img/avatar.png" alt="">
-          </div>
-          <div class="quiz-hint-mobile-text">
-            <div class="quiz-hint-mobile-person">
-              Андрей <span>Монтажник, консультант</span>
+            <div class="quiz-hint-mobile-avatar">
+              <div class="quiz-circle">
+                <div class="circle" style="margin: 0;">
+                  <div class="inner-ring"></div>
+                  <div class="inner-circle"></div>
+                  <div class="inner-gradient"></div>
+                </div>
+              </div>
+              <img src="img/avatar.png" alt="">
             </div>
             <div class="quiz-hint-mobile-text">
-              {{ getActiveStage.description }}
+              <div class="quiz-hint-mobile-person">
+                Андрей <span>Монтажник, консультант</span>
+              </div>
+              <div class="quiz-hint-mobile-text">
+                {{ getActiveStage.description.substring(0,80) + '...' }}
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </transition>
 
@@ -101,9 +111,33 @@
           </div>
         </div>
 
-        <div class="quiz-answers-hint">
-          <div class="quiz-answers-hint-head">
-            <div class="quiz-answers-hint-avatar">
+          <div class="quiz-answers-hint">
+            <div class="quiz-answers-hint-head">
+              <div class="quiz-answers-hint-avatar">
+                <div class="quiz-circle">
+                  <div class="circle" style="margin: 0;">
+                    <div class="inner-ring"></div>
+                    <div class="inner-circle"></div>
+                    <div class="inner-gradient"></div>
+                  </div>
+                </div>
+                <img src="img/avatar.png" alt="">
+              </div>
+
+              <div class="quiz-answers-hint-text">
+                <div class="quiz-answers-hint-text-name">Андрей</div>
+                <div class="quiz-answers-hint-text-position">Монтажник, консультант</div>
+              </div>
+            </div>
+            <div class="quiz-answers-hint-wrap">
+              <img src="img/bubble.svg" alt="" class="quiz-answers-hint-svg">
+              <div class="quiz-answers-hint-message">
+                {{ getActiveStage.description }}
+              </div>
+            </div>
+          </div>
+          <div class="quiz-hint-mobile">
+            <div class="quiz-hint-mobile-avatar">
               <div class="quiz-circle">
                 <div class="circle" style="margin: 0;">
                   <div class="inner-ring"></div>
@@ -113,33 +147,15 @@
               </div>
               <img src="img/avatar.png" alt="">
             </div>
-
-            <div class="quiz-answers-hint-text">
-              <div class="quiz-answers-hint-text-name">Андрей</div>
-              <div class="quiz-answers-hint-text-position">Монтажник, консультант</div>
-            </div>
-          </div>
-          <div class="quiz-answers-hint-wrap">
-            <img src="img/bubble.svg" alt="" class="quiz-answers-hint-svg">
-            <div class="quiz-answers-hint-message">
-              {{ getActiveStage.description }}
-            </div>
-
-          </div>
-        </div>
-        <div class="quiz-hint-mobile">
-          <div class="quiz-hint-mobile-avatar">
-            <img src="img/avatar.png" alt="">
-          </div>
-          <div class="quiz-hint-mobile-text">
-            <div class="quiz-hint-mobile-person">
-              Андрей <span>Монтажник, консультант</span>
-            </div>
             <div class="quiz-hint-mobile-text">
-              {{ getActiveStage.description }}
+              <div class="quiz-hint-mobile-person">
+                Андрей <span>Монтажник, консультант</span>
+              </div>
+              <div class="quiz-hint-mobile-text">
+                {{ getActiveStage.description.substring(0,80) + '...' }}
+              </div>
             </div>
           </div>
-        </div>
       </div>
       </transition>
 
@@ -194,7 +210,7 @@
                 Андрей <span>Монтажник, консультант</span>
               </div>
               <div class="quiz-hint-mobile-text">
-                {{ getActiveStage.description }}
+                {{ getActiveStage.description.substring(0,80) + '...' }}
               </div>
             </div>
           </div>
@@ -242,6 +258,26 @@
 
           </div>
         </div>
+        <div class="quiz-hint-mobile">
+          <div class="quiz-hint-mobile-avatar">
+            <div class="quiz-circle">
+              <div class="circle" style="margin: 0;">
+                <div class="inner-ring"></div>
+                <div class="inner-circle"></div>
+                <div class="inner-gradient"></div>
+              </div>
+            </div>
+            <img src="img/avatar.png" alt="">
+          </div>
+          <div class="quiz-hint-mobile-text">
+            <div class="quiz-hint-mobile-person">
+              Андрей <span>Монтажник, консультант</span>
+            </div>
+            <div class="quiz-hint-mobile-text">
+              {{ getActiveStage.description.substring(0,80) + '...' }}
+            </div>
+          </div>
+        </div>
       </div>
       </transition>
 
@@ -249,16 +285,6 @@
         <div v-if="finish" class="quiz-final">
           <form action="" class="quiz-final-form">
             <div class="form-row">
-<!--              <div v-if="stages[7].checkedValue === 0 || stages[7].checkedValue === 2" class="form-col">-->
-<!--                <label for="name-quiz" class="placeholder unfocus">Имя</label>-->
-<!--                <img src="img/user-input.svg" alt="">-->
-<!--                <input @focus="focusInput" @blur="blurInput" type="text" name="name" id="name-quiz" class="input-quiz">-->
-<!--              </div>-->
-<!--              <div v-else class="form-col">-->
-<!--                <label for="square-quiz" class="placeholder unfocus">Количество соток полива</label>-->
-<!--                <img src="img/calc-input.svg" alt="">-->
-<!--                <input @focus="focusInput" @blur="blurInput" type="number" name="name" id="square-quiz" class="input-quiz">-->
-<!--              </div>-->
               <div v-if="stages[7].checkedValue === 0 || stages[7].checkedValue === 2" class="form__wrap">
                 <label class="form__label">
                   <span class="form__icon">
@@ -289,17 +315,6 @@
                   </span>
                 </label>
               </div>
-
-<!--              <div v-if="stages[7].checkedValue === 0 || stages[7].checkedValue === 2" class="form-col">-->
-<!--                <label for="tel-quiz" class="placeholder unfocus">Введите номер телефона</label>-->
-<!--                <img src="img/call-input.svg" alt="">-->
-<!--                <input @focus="focusInput" @blur="blurInput" type="tel" name="tel" id="tel-quiz" class="input-quiz">-->
-<!--              </div>-->
-<!--              <div v-else class="form-col">-->
-<!--                <label for="mkad-quiz" class="placeholder unfocus">Удаленность участка от МКАД</label>-->
-<!--                <img src="img/home-input.svg" alt="">-->
-<!--                <input @focus="focusInput" @blur="blurInput" type="number" name="mkad" id="mkad-quiz" class="input-quiz">-->
-<!--              </div>-->
               <div v-if="stages[7].checkedValue === 0 || stages[7].checkedValue === 2" class="form__wrap">
                 <label class="form__label">
                   <span class="form__icon">
@@ -331,21 +346,6 @@
             </div>
 
             <div class="form-row">
-<!--              <div v-if="stages[7].checkedValue === 0" class="form-col">-->
-<!--                <label for="email-quiz" class="placeholder unfocus">E-Mail адрес</label>-->
-<!--                <img src="img/email-input.svg" alt="">-->
-<!--                <input @focus="focusInput" @blur="blurInput" type="email" name="email" id="email-quiz" class="input-quiz">-->
-<!--              </div>-->
-<!--              <div v-else-if="stages[7].checkedValue === 1" class="form-col">-->
-<!--                <label for="name-quiz" class="placeholder unfocus">Имя</label>-->
-<!--                <img src="img/user-input.svg" alt="">-->
-<!--                <input @focus="focusInput" @blur="blurInput" type="text" name="name" id="name-quiz" class="input-quiz">-->
-<!--              </div>-->
-<!--              <div v-else class="form-col">-->
-<!--                <label for="hw-quiz" class="placeholder unfocus">Ближайшее шоссе</label>-->
-<!--                <img src="img/hw-input.svg" alt="">-->
-<!--                <input @focus="focusInput" @blur="blurInput" type="text" name="name" id="hw-quiz" class="input-quiz">-->
-<!--              </div>-->
               <div v-if="stages[7].checkedValue === 0" class="form__wrap">
                 <label class="form__label">
                   <span class="form__icon">
@@ -389,17 +389,6 @@
                   </span>
                 </label>
               </div>
-
-<!--              <div v-if="stages[7].checkedValue === 0 || stages[7].checkedValue === 2" class="form-col">-->
-<!--                <label for="mkad-quiz" class="placeholder unfocus">Удаленность участка от МКАД</label>-->
-<!--                <img src="img/home-input.svg" alt="">-->
-<!--                <input @focus="focusInput" @blur="blurInput" type="number" name="mkad" id="mkad-quiz" class="input-quiz">-->
-<!--              </div>-->
-<!--              <div v-else class="form-col">-->
-<!--                <label for="tel-quiz" class="placeholder unfocus">Введите номер телефона</label>-->
-<!--                <img src="img/call-input.svg" alt="">-->
-<!--                <input @focus="focusInput" @blur="blurInput" type="tel" name="tel" id="tel-quiz" class="input-quiz">-->
-<!--              </div>-->
               <div v-if="stages[7].checkedValue === 0 || stages[7].checkedValue === 2" class="form__wrap">
                 <label class="form__label">
                   <span class="form__icon">
@@ -462,6 +451,26 @@
                 Пришлю на указанные контактные данные расчет стоимости с учетом бесплатного датчика дождя
               </div>
 
+            </div>
+          </div>
+          <div class="quiz-hint-mobile">
+            <div class="quiz-hint-mobile-avatar">
+              <div class="quiz-circle">
+                <div class="circle" style="margin: 0;">
+                  <div class="inner-ring"></div>
+                  <div class="inner-circle"></div>
+                  <div class="inner-gradient"></div>
+                </div>
+              </div>
+              <img src="img/avatar.png" alt="">
+            </div>
+            <div class="quiz-hint-mobile-text">
+              <div class="quiz-hint-mobile-person">
+                Андрей <span>Монтажник, консультант</span>
+              </div>
+              <div class="quiz-hint-mobile-text">
+                {{ getActiveStage.description.substring(0,80) + '...' }}
+              </div>
             </div>
           </div>
         </div>
