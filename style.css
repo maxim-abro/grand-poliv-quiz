@@ -103,9 +103,14 @@
     color: #EE6D34;
 }
 .quiz-answers,
-.quiz-answers-one {
+.quiz-answers-one,
+.quiz-answers-three {
     display: flex;
     justify-content: space-between;
+}
+
+.quiz-answers-three>.quiz-answers-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .quiz-answers-cards {
@@ -133,6 +138,9 @@
 .quiz-answers-two {
     display: flex;
     justify-content: space-between;
+}
+.quiz-answers-two>.quiz-answers-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .quiz-answers-two>.quiz-answers-cards>.quiz-answers-card {
@@ -397,6 +405,9 @@
         font-size: 28px;
         margin-bottom: 12px;
     }
+    .quiz-answers-three>.quiz-answers-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .quiz-top-text-subtitle {
         font-size: 20px;
     }
@@ -406,6 +417,7 @@
     .quiz-answers,
     .quiz-answers-one,
     .quiz-answers-two,
+    .quiz-answers-three,
     .quiz-plane,
     .quiz-final {
         flex-direction: column-reverse;
@@ -502,8 +514,77 @@
     .quiz-body-text {
         line-height: 46px;
     }
+    .form__label {
+        width: 100%;
+    }
 }
 
+@media screen and (max-width: 768px) {
+    .container {
+        width: 516px;
+        padding: 36px 36px 73px;
+    }
+    .quiz-hint-mobile-avatar {
+        margin: 15px 0 15px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 35%;
+    }
+    .quiz-circle {
+        bottom: 10%;
+        left: 80%;
+    }
+    .quiz-hint-mobile-text {
+        margin: 10px 0;
+    }
+    .quiz-top-text-title {
+        font-size: 24px;
+    }
+    .quiz-top-mobile-subtitle {
+        font-size: 18px;
+    }
+    .quiz-body-text {
+        font-size: 26px;
+        margin-bottom: 32px;
+    }
+    .quiz-answers-card-text {
+        font-size: 12px;
+        padding: 20px;
+    }
+    .quiz-answers-two>.quiz-answers-cards {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    .quiz-answers-two>.quiz-answers-cards>.quiz-answers-card {
+        padding: 0 10px;
+    }
+
+    .quiz-answers-two>.quiz-answers-cards>.quiz-answers-card>.quiz-answers-card-text {
+        padding-right: 0;
+    }
+    .quiz-final-form>.form-row {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+    }
+    .quiz-top-text-title {
+        font-size: 18px;
+        line-height: 23px;
+    }
+    .quiz-top-mobile-subtitle {
+        font-size: 14px;
+    }
+    .quiz-body-text {
+        font-size: 24px;
+    }
+    .quiz-hint-mobile-text {
+        font-size: 13px;
+    }
+}
 /*animation*/
 
 .fade-enter-active {

@@ -104,12 +104,12 @@
 
       <transition name="fade">
         <div v-if="getActiveStage.type === 1 && !plane && !finish" class="quiz-answers-one">
-        <div class="quiz-answers-cards" :style="`grid-template-columns: repeat(3, minmax(0, 1fr));`">
-          <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
-            <img :src="`img/${item.image}`" alt="">
-            <div class="quiz-answers-card-text">{{ item.title }}</div>
+          <div class="quiz-answers-cards" :style="`grid-template-columns: repeat(3, minmax(0, 1fr));`">
+            <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
+              <img :src="`img/${item.image}`" alt="">
+              <div class="quiz-answers-card-text">{{ item.title }}</div>
+            </div>
           </div>
-        </div>
 
           <div class="quiz-answers-hint">
             <div class="quiz-answers-hint-head">
@@ -156,12 +156,12 @@
               </div>
             </div>
           </div>
-      </div>
+        </div>
       </transition>
 
       <transition name="fade">
         <div v-if="getActiveStage.type === 2 && !plane && !finish" class="quiz-answers-two">
-          <div class="quiz-answers-cards" :style="`grid-template-columns: repeat(2, minmax(0, 1fr));`">
+          <div class="quiz-answers-cards">
             <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
               <img :src="`img/${item.image}`" alt="">
               <div class="quiz-answers-card-text">{{ item.title }}</div>
@@ -192,6 +192,64 @@
                 {{ getActiveStage.description }}
               </div>
 
+            </div>
+          </div>
+          <div class="quiz-hint-mobile">
+            <div class="quiz-hint-mobile-avatar">
+              <div class="quiz-circle">
+                <div class="circle" style="margin: 0;">
+                  <div class="inner-ring"></div>
+                  <div class="inner-circle"></div>
+                  <div class="inner-gradient"></div>
+                </div>
+              </div>
+              <img src="img/avatar.png" alt="">
+            </div>
+            <div class="quiz-hint-mobile-text">
+              <div class="quiz-hint-mobile-person">
+                Андрей <span>Монтажник, консультант</span>
+              </div>
+              <div class="quiz-hint-mobile-text">
+                {{ getActiveStage.description.substring(0,80) + '...' }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <transition name="fade">
+        <div v-if="getActiveStage.type === 3 && !plane && !finish" class="quiz-answers-three">
+          <div class="quiz-answers-cards">
+            <div v-for="(item, _idx) of getActiveStage.answers" :key="_idx" @click="toNextStep(_idx)" class="quiz-answers-card">
+              <img :src="`img/${item.image}`" alt="">
+              <div class="quiz-answers-card-text">
+                <span>{{ item.title }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="quiz-answers-hint">
+            <div class="quiz-answers-hint-head">
+              <div class="quiz-answers-hint-avatar">
+                <div class="quiz-circle">
+                  <div class="circle" style="margin: 0;">
+                    <div class="inner-ring"></div>
+                    <div class="inner-circle"></div>
+                    <div class="inner-gradient"></div>
+                  </div>
+                </div>
+                <img src="img/avatar.png" alt="">
+              </div>
+
+              <div class="quiz-answers-hint-text">
+                <div class="quiz-answers-hint-text-name">Андрей</div>
+                <div class="quiz-answers-hint-text-position">Монтажник, консультант</div>
+              </div>
+            </div>
+            <div class="quiz-answers-hint-wrap">
+              <img src="img/bubble.svg" alt="" class="quiz-answers-hint-svg">
+              <div class="quiz-answers-hint-message">
+                {{ getActiveStage.description }}
+              </div>
             </div>
           </div>
           <div class="quiz-hint-mobile">
